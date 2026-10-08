@@ -1,0 +1,134 @@
+# Owner area for the BMD Innovate site (Decap CMS).
+# Every save here is committed to the GitHub repo, and Netlify republishes the site (~1 minute).
+
+backend:
+  name: github
+  repo: NKASG/bmd-innovate
+  branch: main
+  commit_messages:
+    update: "Update {{collection}} “{{slug}}”"
+    uploadMedia: "Upload photo “{{path}}”"
+    deleteMedia: "Delete photo “{{path}}”"
+
+# To try the owner area on your own computer without logging in, uncomment the next line
+# and run `npx decap-server` in this folder (see README).
+# local_backend: true
+
+site_url: https://bmd-innovate.netlify.app       # <-- change to your live site address
+display_url: https://bmd-innovate.netlify.app    # <-- same
+logo_url: /img/bmd-logo.svg
+
+media_folder: uploads        # where uploaded deal photos are saved in the repo
+public_folder: /uploads      # how the site refers to them
+
+collections:
+  - name: shop
+    label: "BMD Innovate"
+    editor:
+      preview: false
+    files:
+      # ------------------------------------------------------------- deals
+      - name: deals
+        label: "Deals"
+        file: data/deals.json
+        format: json
+        fields:
+          - label: "Deals"
+            name: deals
+            widget: list
+            add_to_top: true
+            collapsed: true
+            label_singular: "deal"
+            summary: "{{fields.title}} · ₦{{fields.price}}"
+            hint: "Newest first. Tick “Sold out” instead of deleting if you want customers to see it sold."
+            fields:
+              - label: "Device name"
+                name: title
+                widget: string
+                hint: "e.g. iPhone 13 Pro"
+              - label: "Type"
+                name: category
+                widget: select
+                default: phone
+                options:
+                  - { label: "Phone", value: phone }
+                  - { label: "Laptop", value: laptop }
+                  - { label: "Tablet", value: tablet }
+                  - { label: "Accessory", value: accessory }
+                  - { label: "Other gadget", value: other }
+              - label: "Condition"
+                name: condition
+                widget: select
+                default: "UK used"
+                options: ["Brand new", "UK used", "Nigerian used", "Refurbished"]
+              - label: "Key specs"
+                name: specs
+                widget: string
+                required: false
+                hint: "e.g. 256GB · 6GB RAM · Battery 89%"
+              - label: "Price (₦)"
+                name: price
+                widget: number
+                value_type: int
+                min: 0
+                hint: "Numbers only, e.g. 650000"
+              - label: "Old price (₦)"
+                name: old_price
+                widget: number
+                value_type: int
+                min: 0
+                required: false
+                hint: "Optional. Shows crossed out with the saving."
+              - label: "Extra details"
+                name: note
+                widget: text
+                required: false
+                hint: "e.g. Comes with charger. Face ID working. 3 months warranty."
+              - label: "Photo"
+                name: photo
+                widget: image
+                required: false
+                choose_url: false
+                hint: "JPG or PNG. Smaller photos load faster for customers (send it to yourself on WhatsApp first to shrink it)."
+              - label: "Swap / trade-in accepted"
+                name: swap
+                widget: boolean
+                default: false
+              - label: "Sold out"
+                name: sold
+                widget: boolean
+                default: false
+              - label: "Posted"
+                name: posted
+                widget: datetime
+                default: "{{now}}"
+                hint: "Filled in automatically. Used for “New” badges and ordering."
+
+      # ------------------------------------------------------ shop details
+      - name: settings
+        label: "Shop details"
+        file: data/settings.json
+        format: json
+        fields:
+          - label: "WhatsApp number"
+            name: whatsapp
+            widget: string
+            hint: "Every “WhatsApp” button opens a chat with this number."
+          - label: "Phone number to show"
+            name: phone
+            widget: string
+          - label: "Shop address"
+            name: address
+            widget: string
+          - label: "Opening hours"
+            name: hours
+            widget: string
+          - label: "Instagram handle"
+            name: instagram
+            widget: string
+            required: false
+            hint: "Without the @"
+          - label: "What we sell"
+            name: sells
+            widget: list
+            field: { label: "Item", name: item, widget: string }
