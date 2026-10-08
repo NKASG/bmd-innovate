@@ -40,12 +40,18 @@ collections:
             collapsed: true
             label_singular: "deal"
             summary: "{{fields.title}} · ₦{{fields.price}}"
-            hint: "Newest first. Tick “Sold out” instead of deleting if you want customers to see it sold."
+            hint: "Newest first. After adding or changing a deal (and its photo), click Publish → Publish now at the top. Tick “Sold out” instead of deleting if you want customers to see it sold."
             fields:
               - label: "Device name"
                 name: title
                 widget: string
                 hint: "e.g. iPhone 13 Pro"
+              - label: "Photo"
+                name: photo
+                widget: image
+                required: false
+                choose_url: false
+                hint: "Click “Choose an image” → Upload → pick the photo → click it → “Choose selected”. It saves when you click Publish at the top."
               - label: "Type"
                 name: category
                 widget: select
@@ -84,12 +90,6 @@ collections:
                 widget: text
                 required: false
                 hint: "e.g. Comes with charger. Face ID working. 3 months warranty."
-              - label: "Photo"
-                name: photo
-                widget: image
-                required: false
-                choose_url: false
-                hint: "JPG or PNG. Smaller photos load faster for customers (send it to yourself on WhatsApp first to shrink it)."
               - label: "Swap / trade-in accepted"
                 name: swap
                 widget: boolean
