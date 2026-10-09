@@ -1,3 +1,17 @@
 {
-  "deals": []
+  "deals": [
+    {
+      "price": 650000,
+      "old_price": 750000,
+      "photo": "/uploads/product.png",
+      "note": "1 month warranty",
+      "swap": true,
+      "sold": false,
+      "specs": "128gb",
+      "title": "Iphone 14 pro max",
+      "condition": "UK used",
+      "category": "phone",
+      "posted": "2026-10-09T23:32:00.000+01:00"
+    }
+  ]
 }
