@@ -1,6 +1,18 @@
 {
   "deals": [
     {
+      "price": 1000000,
+      "old_price": 1100000,
+      "photo": "/uploads/.............jpg",
+      "swap": true,
+      "sold": false,
+      "specs": "256GB · 6GB RAM · Battery 89%",
+      "title": "Iphone 18",
+      "condition": "UK used",
+      "category": "phone",
+      "posted": "2026-10-23T15:12:00.000+01:00"
+    },
+    {
       "price": 650000,
       "old_price": 750000,
       "photo": "/uploads/product.png",
